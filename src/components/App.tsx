@@ -25,6 +25,8 @@ export const App: FC = () => {
   const themeParams = useThemeParams();
   const viewport = useViewport();
 
+
+
   useEffect(() => {
     return bindMiniAppCSSVars(miniApp, themeParams);
   }, [miniApp, themeParams]);
@@ -42,6 +44,12 @@ export const App: FC = () => {
   const navigator = useMemo(() => initNavigator('app-navigation-state'), []);
   const [location, reactNavigator] = useIntegration(navigator);
 
+  console.log('lp', lp);
+  console.log('miniApp', miniApp);
+  console.log('themeParams', themeParams);
+  console.log('viewport', viewport);
+  console.log('location', location);
+
   // Don't forget to attach the navigator to allow it to control the BackButton state as well
   // as browser history.
   useEffect(() => {
@@ -57,7 +65,7 @@ export const App: FC = () => {
       <Router location={location} navigator={reactNavigator}>
         <Routes>
           {routes.map((route) => <Route key={route.path} {...route} />)}
-          <Route path='*' element={<Navigate to='/'/>}/>
+          <Route path='*' element={<Navigate to='/' />} />
         </Routes>
       </Router>
     </AppRoot>
